@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:LocalFaceApiDemo.ViewModels"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             x:Class="LocalFaceApiDemo.Views.FaceView"
+             ios:Page.UseSafeArea="True"
+             Title="Face Local Demo">
+
+    <ContentPage.BindingContext>
+        <vm:FaceViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="pick.png" 
+                     Order="Primary"
+                     Command="{Binding PickPhotoCommand}"
+                     Priority="0" />
+
+        <ToolbarItem Icon="camera.png" 
+                     Order="Primary"
+                     Command="{Binding TakePhotoCommand}"
+                     Priority="1" />
+
+        <ToolbarItem Icon="brain.png" 
+                     Order="Primary"
+                     Command="{Binding AnalyzePhotoCommand}"
+                     Priority="2" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <Grid Margin="10" Padding="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Style="{StaticResource LabelTitle}"
+                   Text="Picture"/>
+
+            <Image Grid.Row="1"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   x:Name="PhotoImage" 
+                   Margin="5"
+                   Source="{Binding PhotoStream}"
+                   WidthRequest="200" 
+                   HeightRequest="200" 
+                   HorizontalOptions="CenterAndExpand" 
+                   Aspect="AspectFit" />
+
+            <ActivityIndicator Grid.Row="2"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               HorizontalOptions="Center"
+                               IsVisible="{Binding IsBusy}" 
+                               IsRunning="{Binding IsBusy}" 
+                               IsEnabled="{Binding IsBusy}"/>
+
+            <Label Grid.Row="3"
+                   Grid.Column="0"
+                   Style="{StaticResource LabelTitle}"
+                   Text="Gender"/>
+
+            <Label Grid.Row="3"
+                   Grid.Column="1"
+                   Style="{StaticResource LabelResult}"
+                   Text="{Binding FaceInfo.FaceAttributes.Gender}"/>
+
+            <Label Grid.Row="4"
+                   Grid.Column="0"
+                   Style="{StaticResource LabelTitle}"
+                   Text="Glasses"/>
+
+            <Label Grid.Row="4"
+                   Grid.Column="1"
+                   Style="{StaticResource LabelResult}"
+                   Text="{Binding FaceInfo.FaceAttributes.Glasses}"/>
+
+            <Label Grid.Row="5"
+                   Grid.Column="0"
+                   Style="{StaticResource LabelTitle}"
+                   Text="Smile"/>
+
+            <Label Grid.Row="5"
+                   Grid.Column="1"
+                   Style="{StaticResource LabelResult}"
+                   Text="{Binding FaceInfo.FaceAttributes.Smile}"/>
+
+            <Label Grid.Row="6"
+                   Grid.Column="0"
+                   Style="{StaticResource LabelTitle}"
+                   Text="Age"/>
+
+            <Label Grid.Row="6"
+                   Grid.Column="1"
+                   Style="{StaticResource LabelResult}"
+                   Text="{Binding FaceInfo.FaceAttributes.Age}"/>
+
+            <Label Grid.Row="7"
+                   Grid.Column="0"
+                   Style="{StaticResource LabelTitle}"
+                   Text="Emotion"/>
+
+            <Label Grid.Row="7"
+                   Grid.Column="1"
+                   Style="{StaticResource LabelResult}"
+                   Text="{Binding FaceInfo.EmotionString}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

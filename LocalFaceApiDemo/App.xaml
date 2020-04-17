@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="LocalFaceApiDemo.App">
+    <Application.Resources>
+        <Style x:Key="LabelNormalStyle" TargetType="Label">
+            <Setter Property="Margin" Value="5" />
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="VerticalOptions" Value="Center"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+        <Style x:Key="LabelResult" TargetType="Label" BasedOn="{StaticResource LabelNormalStyle}">
+            <Setter Property="TextColor" Value="CornflowerBlue" />
+        </Style>
+
+        <Style x:Key="LabelTitle" TargetType="Label" BasedOn="{StaticResource LabelNormalStyle}">
+            <Setter Property="TextColor" Value="Black" />
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Large"/>
+        </Style>
+    </Application.Resources>
+</Application>
