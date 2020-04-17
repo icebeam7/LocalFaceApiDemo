@@ -24,6 +24,8 @@ namespace LocalFaceApiDemo.Models
             }
         }
 
+        public string MaxEmotion { get; set; }
+
         public FaceInfo()
         {
             FaceAttributes = new FaceAttributes()
@@ -32,7 +34,7 @@ namespace LocalFaceApiDemo.Models
                 Glasses = "N/A",
                 Smile = -1,
                 Age = "N/A",
-                Emotion = null
+                Emotion = null,
             };
         }
 
@@ -83,6 +85,8 @@ namespace LocalFaceApiDemo.Models
                 maxEmotion = "Surprise";
             }
 
+            MaxEmotion = maxEmotion;
+
             return $"{maxEmotion} ({maxScore * 100.0} %)";
         }
     }
@@ -114,5 +118,13 @@ namespace LocalFaceApiDemo.Models
         public double Neutral { get; set; }
         public double Sadness { get; set; }
         public double Surprise { get; set; }
+    }
+
+    public class BoundingBox
+    {
+        public double Top { get; set; }
+        public double Left { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
     }
 }

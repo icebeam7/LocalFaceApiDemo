@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vm="clr-namespace:LocalFaceApiDemo.ViewModels"
              xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
              x:Class="LocalFaceApiDemo.Views.FaceView"
              ios:Page.UseSafeArea="True"
              Title="Face Local Demo">
@@ -32,7 +33,7 @@
         <Grid Margin="10" Padding="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="400"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -50,7 +51,16 @@
                    Style="{StaticResource LabelTitle}"
                    Text="Picture"/>
 
-            <Image Grid.Row="1"
+            <skia:SKCanvasView Grid.Row="1"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="2"
+                               WidthRequest="400"
+                               Margin="5"
+                               HorizontalOptions="CenterAndExpand"
+                               x:Name="ImageCanvas"
+                               PaintSurface="ImageCanvas_PaintSurface"/>
+
+            <!--<Image Grid.Row="1"
                    Grid.Column="0"
                    Grid.ColumnSpan="2"
                    x:Name="PhotoImage" 
@@ -59,7 +69,7 @@
                    WidthRequest="200" 
                    HeightRequest="200" 
                    HorizontalOptions="CenterAndExpand" 
-                   Aspect="AspectFit" />
+                   Aspect="AspectFit" />-->
 
             <ActivityIndicator Grid.Row="2"
                                Grid.Column="0"

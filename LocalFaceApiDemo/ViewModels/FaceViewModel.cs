@@ -3,6 +3,7 @@ using LocalFaceApiDemo.Models;
 using LocalFaceApiDemo.Services;
 using System.Threading.Tasks;
 using Plugin.Media.Abstractions;
+using SkiaSharp;
 
 namespace LocalFaceApiDemo.ViewModels
 {
@@ -18,6 +19,14 @@ namespace LocalFaceApiDemo.ViewModels
         {
             get { return photo; }
             set { photo = value; OnPropertyChanged(); OnPropertyChanged("PhotoStream"); }
+        }
+
+        private SKBitmap image;
+
+        public SKBitmap Image
+        {
+            get { return image; }
+            set { image = value; OnPropertyChanged(); }
         }
 
         private bool isBusy;
@@ -56,6 +65,7 @@ namespace LocalFaceApiDemo.ViewModels
         {
             FaceInfo = new FaceInfo();
             Photo = await ImageService.TakePhoto(useCamera);
+            Image = SKBitmap.Decode(Photo.GetStreamWithImageRotatedForExternalStorage());
         }
 
         private async Task AnalyzePhotoAPI()
